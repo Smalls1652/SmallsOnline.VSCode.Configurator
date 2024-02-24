@@ -9,6 +9,9 @@ if ([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([System.Ru
 elseif ([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([System.Runtime.InteropServices.OSPlatform]::Linux)) {
     $osName = "linux"
 }
+elseif ([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([System.Runtime.InteropServices.OSPlatform]::Windows)) {
+    $osName = "win"
+}
 else {
     $PSCmdlet.ThrowTerminatingError(
         [System.Management.Automation.ErrorRecord]::new(
