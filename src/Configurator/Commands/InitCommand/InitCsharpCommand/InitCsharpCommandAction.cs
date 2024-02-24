@@ -55,28 +55,4 @@ public class InitCsharpCommandAction : AsynchronousCliAction
         ConsoleUtils.WriteSuccess("\n\n🥳 VSCode project initialized!");
         return 0;
     }
-    
-    private static string ParseSolutionNameArgument(ParseResult parseResult)
-    {
-        string? solutionName = parseResult.GetValue<string>("--solution-name");
-
-        if (solutionName is null || string.IsNullOrEmpty(solutionName) || string.IsNullOrWhiteSpace(solutionName))
-        {
-            throw new NullReferenceException("The solution name is required.");
-        }
-
-        return solutionName;
-    }
-
-    private static string ParseOutputDirectoryArgument(ParseResult parseResult)
-    {
-        string? outputDirectory = parseResult.GetValue<string>("--output-directory");
-
-        if (outputDirectory is null || string.IsNullOrEmpty(outputDirectory) || string.IsNullOrWhiteSpace(outputDirectory))
-        {
-            throw new NullReferenceException("The output directory is required.");
-        }
-
-        return outputDirectory;
-    }
 }
