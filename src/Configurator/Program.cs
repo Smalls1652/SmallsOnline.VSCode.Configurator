@@ -1,2 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System.CommandLine;
+using SmallsOnline.VSCode.Configurator;
+
+CliConfiguration cliConfig = new(new RootCommand());
+
+return await cliConfig.InvokeAsync(args);
