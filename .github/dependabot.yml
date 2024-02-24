@@ -4,6 +4,8 @@ updates:
   - package-ecosystem: "nuget"
     directory: "/src/Configurator"
     target-branch: "main"
+    labels:
+      - "Configurator"
     schedule:
       interval: "daily"
     assignees:
