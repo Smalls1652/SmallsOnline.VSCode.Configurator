@@ -195,6 +195,10 @@
 				{
 					"label": "Entire solution",
 					"value": "SmallsOnline.VSCode.Configurator.sln"
+				},
+				{
+					"label": "Configurator",
+					"value": "src/Configurator"
 				}
 			]
 		},
