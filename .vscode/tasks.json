@@ -119,12 +119,52 @@
 				"Release",
 				"--self-contained",
 				"--runtime",
-				""
+				"${input:runtimeIdentifier}"
 			],
 			"options": {
 				"cwd": "${workspaceFolder}"
 			},
+			"runOptions": {
+				"instanceLimit": 1
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": true
+			},
 			"problemMatcher": "$msCompile"
+		},
+		{
+			"label": "Install vscode-configurator locally",
+			"detail": "Copy the vscode-configurator binary to the \"~/.vscodeconfigurator/bin\" directory.",
+			"icon": {
+				"id": "move",
+				"color": "terminal.ansiBlue"
+			},
+			"type": "process",
+			"command": "pwsh",
+			"args": [
+				"-NoLogo",
+				"-NoProfile",
+				"-File",
+				"Install-VSCodeConfigurator.ps1",
+				"-Verbose"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": true,
+			},
+			"problemMatcher": []
 		}
 		// Remaining tasks are only for the VSCode launch configs
 		// or are supporting tasks.
@@ -169,17 +209,35 @@
 			]
 		},
 		{
-			"id": "runtimePlatformArch",
-			"description": "Select a platform architecture for the runtime.",
+			"id": "runtimeIdentifier",
+			"description": "Select a runtime identifier for the build.",
 			"type": "pickString",
-			"default": "macos-arm64",
+			"default": "osx-arm64",
 			"options": [
-				"linux-x64",
-				"linux-arm64",
-				"macos-x64",
-				"macos-arm64",
-				"win-x64",
-				"win-arm64"
+				{
+					"label": "macOS (arm64)",
+					"value": "osx-arm64"
+				},
+				{
+					"label": "macOS (x64)",
+					"value": "osx-x64"
+				},
+				{
+					"label": "Linux (arm64)",
+					"value": "linux-arm64"
+				},
+				{
+					"label": "Linux (x64)",
+					"value": "linux-x64"
+				},
+				{
+					"label": "Windows (x64)",
+					"value": "win-x64"
+				},
+				{
+					"label": "Windows (x86)",
+					"value": "win-x86"
+				}
 			]
 		},
 		{
