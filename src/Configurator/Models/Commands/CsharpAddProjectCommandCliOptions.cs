@@ -5,13 +5,13 @@ namespace SmallsOnline.VSCode.Configurator.Models.Commands;
 /// <summary>
 /// Options for the 'csharp add-project' command.
 /// </summary>
-public class CsharpAddProjectCommandCliOptions
+public class CSharpAddProjectCommandCliOptions
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="CsharpAddProjectCommandCliOptions"/> class.
+    /// Initializes a new instance of the <see cref="CSharpAddProjectCommandCliOptions"/> class.
     /// </summary>
     /// <param name="parseResult">The parse result from the command line.</param>
-    public CsharpAddProjectCommandCliOptions(ParseResult parseResult)
+    public CSharpAddProjectCommandCliOptions(ParseResult parseResult)
     {
         SolutionFilePath = ParseSolutionFilePathArgument(parseResult);
         ProjectPath = ParseProjectPathArgument(parseResult);

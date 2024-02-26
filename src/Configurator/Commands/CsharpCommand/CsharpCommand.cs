@@ -1,21 +1,21 @@
 using System.CommandLine;
-using SmallsOnline.VSCode.Configurator.Commands.Csharp;
+using SmallsOnline.VSCode.Configurator.Commands.CSharp;
 
 namespace SmallsOnline.VSCode.Configurator.Commands;
 
 /// <summary>
 /// Commands for creating and managing C# projects.
 /// </summary>
-public class CsharpCommand : CliCommand
+public class CSharpCommand : CliCommand
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="CsharpCommand"/> class.
+    /// Initializes a new instance of the <see cref="CSharpCommand"/> class.
     /// </summary>
-    public CsharpCommand() : base("csharp")
+    public CSharpCommand() : base("csharp")
     {
         Description = "Commands for creating and managing C# projects.";
 
-        Add(new CsharpInitCommand());
-        Add(new CsharpAddProjectCommand());
+        Add(new CSharpInitCommand());
+        Add(new CSharpAddProjectCommand());
     }
 }

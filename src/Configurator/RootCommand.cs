@@ -13,6 +13,6 @@ public class RootCommand : CliRootCommand
     /// </summary>
     public RootCommand() : base("VSCode Configurator")
     {
-        Add(new CsharpCommand());
+        Add(new CSharpCommand());
     }
 }

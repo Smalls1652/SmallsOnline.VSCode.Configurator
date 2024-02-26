@@ -1,16 +1,16 @@
 using System.CommandLine;
 
-namespace SmallsOnline.VSCode.Configurator.Commands.Csharp;
+namespace SmallsOnline.VSCode.Configurator.Commands.CSharp;
 
 /// <summary>
 /// Command for initializing a new C# project.
 /// </summary>
-public class CsharpInitCommand : CliCommand
+public class CSharpInitCommand : CliCommand
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="CsharpInitCommand"/> class.
+    /// Initializes a new instance of the <see cref="CSharpInitCommand"/> class.
     /// </summary>
-    public CsharpInitCommand() : base("init")
+    public CSharpInitCommand() : base("init")
     {
         Description = "Initialize a new C# project.";
 
@@ -49,6 +49,6 @@ public class CsharpInitCommand : CliCommand
             }
         );
 
-        Action = new CsharpInitCommandAction();
+        Action = new CSharpInitCommandAction();
     }
 }

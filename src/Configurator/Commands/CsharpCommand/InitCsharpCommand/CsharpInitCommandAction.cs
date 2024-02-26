@@ -4,17 +4,17 @@ using SmallsOnline.VSCode.Configurator.External;
 using SmallsOnline.VSCode.Configurator.Models.Commands;
 using SmallsOnline.VSCode.Configurator.Utilities;
 
-namespace SmallsOnline.VSCode.Configurator.Commands.Csharp;
+namespace SmallsOnline.VSCode.Configurator.Commands.CSharp;
 
 /// <summary>
 /// Action for the `csharp init` command.
 /// </summary>
-public class CsharpInitCommandAction : AsynchronousCliAction
+public class CSharpInitCommandAction : AsynchronousCliAction
 {
     /// <inheritdoc />
     public override async Task<int> InvokeAsync(ParseResult parseResult, CancellationToken cancellationToken = default)
     {
-        CsharpInitCommandCliOptions options;
+        CSharpInitCommandCliOptions options;
         try
         {
             options = new(parseResult);
