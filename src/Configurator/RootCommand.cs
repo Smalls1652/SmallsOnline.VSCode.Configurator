@@ -14,5 +14,6 @@ public class RootCommand : CliRootCommand
     public RootCommand() : base("VSCode Configurator")
     {
         Add(new InitCommand());
+        Add(new CsharpCommand());
     }
 }
