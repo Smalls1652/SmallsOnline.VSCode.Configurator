@@ -1,5 +1,8 @@
 [CmdletBinding()]
-param()
+param(
+    [Parameter(Position = 0)]
+    [string]$Configuration = "Release"
+)
 
 $osName = $null
 
@@ -41,9 +44,14 @@ else {
     )
 }
 
-$artifactPath = Join-Path -Path $PSScriptRoot -ChildPath "artifacts/publish/Configurator/release_$($osName)-$($osArch)/vscode-configurator"
-$templatesArtifactPath = Join-Path -Path $PSScriptRoot -ChildPath "artifacts/publish/Configurator/release_$($osName)-$($osArch)/Templates"
+$artifactPath = Join-Path -Path $PSScriptRoot -ChildPath "artifacts/publish/Configurator/$($Configuration.ToLower())_$($osName)-$($osArch)/vscode-configurator"
+$templatesArtifactPath = Join-Path -Path $PSScriptRoot -ChildPath "artifacts/publish/Configurator/$($Configuration.ToLower())_$($osName)-$($osArch)/Templates"
+$dsymArtifactPath = Join-Path -Path $PSScriptRoot -ChildPath "artifacts/publish/Configurator/$($Configuration.ToLower())_$($osName)-$($osArch)/vscode-configurator.dsym"
+$pdbArtifactPath = Join-Path -Path $PSScriptRoot -ChildPath "artifacts/publish/Configurator/$($Configuration.ToLower())_$($osName)-$($osArch)/vscode-configurator.pdb"
 $installPath = Join-Path -Path ([System.Environment]::GetFolderPath([System.Environment+SpecialFolder]::UserProfile)) -ChildPath ".vscodeconfigurator/bin/"
+
+$dsymInstallPath = Join-Path -Path $installPath -ChildPath "vscode-configurator.dsym"
+$pdbInstallPath = Join-Path -Path $installPath -ChildPath "vscode-configurator.pdb"
 
 if (!(Test-Path -Path $artifactPath)) {
     $PSCmdlet.ThrowTerminatingError(
@@ -66,3 +74,26 @@ Copy-Item -Path $artifactPath -Destination $installPath -Force -Verbose:$false
 
 Write-Verbose "Copying templates to: $($installPath)"
 Copy-Item -Path $templatesArtifactPath -Destination $installPath -Recurse -Force -Verbose:$false
+
+if ($Configuration -ne "Release") {
+    if (Test-Path -Path $dsymArtifactPath) {
+        Write-Verbose "Copying 'vscode-configurator.dsym' to: $($installPath)"
+        Copy-Item -Path $dsymArtifactPath -Destination $installPath -Force -Recurse -Verbose:$false
+    }
+
+    if (Test-Path -Path $pdbArtifactPath) {
+        Write-Verbose "Copying 'vscode-configurator.pdb' to: $($installPath)"
+        Copy-Item -Path $pdbArtifactPath -Destination $installPath -Force -Verbose:$false
+    }
+}
+else {
+    if (Test-Path -Path $dsymInstallPath) {
+        Write-Verbose "Removing 'vscode-configurator.dsym' from: $($installPath)"
+        Remove-Item -Path $dsymInstallPath -Force -Recurse -Verbose:$false
+    }
+
+    if (Test-Path -Path $pdbInstallPath) {
+        Write-Verbose "Removing 'vscode-configurator.pdb' from: $($installPath)"
+        Remove-Item -Path $pdbInstallPath -Force -Verbose:$false
+    }
+}

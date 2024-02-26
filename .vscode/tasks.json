@@ -116,7 +116,7 @@
 				"publish",
 				"${workspaceFolder}/src/Configurator",
 				"--configuration",
-				"Release",
+				"${input:dotnetConfigurationPublish}",
 				"--self-contained",
 				"--runtime",
 				"${input:runtimeIdentifier}"
@@ -151,6 +151,8 @@
 				"-NoProfile",
 				"-File",
 				"Install-VSCodeConfigurator.ps1",
+				"-Configuration",
+				"${input:dotnetConfigurationPublish}",
 				"-Verbose"
 			],
 			"options": {
@@ -175,6 +177,22 @@
 			"description": "Select a configuration for compilation.",
 			"type": "pickString",
 			"default": "Debug",
+			"options": [
+				{
+					"label": "Debug",
+					"value": "Debug"
+				},
+				{
+					"label": "Release",
+					"value": "Release"
+				}
+			]
+		},
+		{
+			"id": "dotnetConfigurationPublish",
+			"description": "Select a configuration for compilation.",
+			"type": "pickString",
+			"default": "Release",
 			"options": [
 				{
 					"label": "Debug",
