@@ -60,7 +60,7 @@ public class InitCsharpCommandCliOptions
     }
 
     /// <summary>
-    /// Parse the solution name argument from the command line.
+    /// Parse the '--solution-name' argument from the command line.
     /// </summary>
     /// <param name="parseResult">The parse result from the command line.</param>
     /// <returns>The name of the new solution.</returns>
@@ -77,11 +77,21 @@ public class InitCsharpCommandCliOptions
         return solutionName;
     }
 
+    /// <summary>
+    /// Parse the '--add-gitversion' argument from the command line.
+    /// </summary>
+    /// <param name="parseResult">The parse result from the command line.</param>
+    /// <returns>Whether to add GitVersion to the new project.</returns>
     private static bool ParseAddGitVersionArgument(ParseResult parseResult)
     {
         return parseResult.GetValue<bool>("--add-gitversion");
     }
 
+    /// <summary>
+    /// Parse the '--add-nuget-config' argument from the command line.
+    /// </summary>
+    /// <param name="parseResult">The parse result from the command line.</param>
+    /// <returns>Whether to add a NuGet.Config file to the new project.</returns>
     private static bool ParseAddNugetConfigArgument(ParseResult parseResult)
     {
         return parseResult.GetValue<bool>("--add-nuget-config");

@@ -71,6 +71,11 @@ public static partial class DotnetOperations
         ConsoleUtils.WriteSuccess("Done. ✅", false);
     }
 
+    /// <summary>
+    /// Initialize a new .NET tool manifest.
+    /// </summary>
+    /// <param name="outputDirectory">The output directory for the new tool manifest.</param>
+    /// <returns></returns>
     public static async Task InitializeDotnetToolManifestAsync(string outputDirectory)
     {
         if (File.Exists(Path.Combine(outputDirectory, ".config", "dotnet-tools.json")))
@@ -110,6 +115,12 @@ public static partial class DotnetOperations
         ConsoleUtils.WriteSuccess("Done. ✅", false);
     }
 
+    /// <summary>
+    /// Add a .NET tool to the project.
+    /// </summary>
+    /// <param name="outputDirectory">The output directory for the new tool manifest.</param>
+    /// <param name="toolName">The name of the tool to add.</param>
+    /// <returns></returns>
     public static async Task AddDotnetToolAsync(string outputDirectory, string toolName)
     {
         await InitializeDotnetToolManifestAsync(outputDirectory);
@@ -148,6 +159,11 @@ public static partial class DotnetOperations
         ConsoleUtils.WriteSuccess("Done. ✅", false);
     }
 
+    /// <summary>
+    /// Add the .NET 'gitignore' template to the project.
+    /// </summary>
+    /// <param name="outputDirectory">The output directory for the new .gitignore file.</param>
+    /// <returns></returns>
     public static async Task AddGitIgnoreAsync(string outputDirectory)
     {
         ConsoleUtils.WriteInfo($"\n📄 Adding '.gitignore' to project root... ", false);
@@ -182,6 +198,11 @@ public static partial class DotnetOperations
         ConsoleUtils.WriteSuccess("Done. ✅", false);
     }
 
+    /// <summary>
+    /// Add the .NET 'build.props' template to the project.
+    /// </summary>
+    /// <param name="outputDirectory">The output directory for the new build.props file.</param>
+    /// <returns></returns>
     public static async Task AddBuildPropsAsync(string outputDirectory)
     {
         ConsoleUtils.WriteInfo($"\n📄 Adding 'build.props' to project root... ", false);
@@ -217,6 +238,11 @@ public static partial class DotnetOperations
         ConsoleUtils.WriteSuccess("Done. ✅", false);
     }
 
+    /// <summary>
+    /// Add the .NET 'global.json' template to the project.
+    /// </summary>
+    /// <param name="outputDirectory">The output directory for the new global.json file.</param>
+    /// <returns></returns>
     public static async Task AddGlobalJsonAsync(string outputDirectory)
     {
         ConsoleUtils.WriteInfo($"\n📄 Adding 'global.json' to project root... ", false);
@@ -253,6 +279,11 @@ public static partial class DotnetOperations
         ConsoleUtils.WriteSuccess("Done. ✅", false);
     }
 
+    /// <summary>
+    /// Add the .NET 'NuGet.Config' template to the project.
+    /// </summary>
+    /// <param name="outputDirectory">The output directory for the new NuGet.Config file.</param>
+    /// <returns></returns>
     public static async Task AddNugetConfigAsync(string outputDirectory)
     {
         ConsoleUtils.WriteInfo($"\n📄 Adding 'NuGet.Config' to project root... ", false);

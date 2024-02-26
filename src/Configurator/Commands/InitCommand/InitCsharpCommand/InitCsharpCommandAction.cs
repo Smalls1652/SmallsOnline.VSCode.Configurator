@@ -7,8 +7,12 @@ using SmallsOnline.VSCode.Configurator.Utilities;
 
 namespace SmallsOnline.VSCode.Configurator.Commands;
 
+/// <summary>
+/// Action for the `init csharp` command.
+/// </summary>
 public class InitCsharpCommandAction : AsynchronousCliAction
 {
+    /// <inheritdoc />
     public override async Task<int> InvokeAsync(ParseResult parseResult, CancellationToken cancellationToken = default)
     {
         InitCsharpCommandCliOptions options;

@@ -2,8 +2,14 @@ using System.CommandLine;
 
 namespace SmallsOnline.VSCode.Configurator.Commands;
 
+/// <summary>
+/// Command for initializing a new C# project.
+/// </summary>
 public class InitCsharpCommand : CliCommand
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InitCsharpCommand"/> class.
+    /// </summary>
     public InitCsharpCommand() : base("csharp")
     {
         Description = "Initialize a new C# project.";
