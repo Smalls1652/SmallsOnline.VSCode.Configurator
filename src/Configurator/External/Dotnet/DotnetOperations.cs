@@ -29,6 +29,20 @@ public static partial class DotnetOperations
         };
     }
 
+    private static async Task RunDotnetProcessAsync(ProcessStartInfo processStartInfo)
+    {
+        using Process dotnetProcess = Process.Start(processStartInfo) ?? throw new Exception("Failed to start 'dotnet' process.");
+
+        await dotnetProcess.WaitForExitAsync();
+
+        if (dotnetProcess.ExitCode != 0)
+        {
+            string dotnetErrorText = await dotnetProcess.StandardError.ReadToEndAsync();
+
+            throw new Exception(dotnetErrorText);
+        }
+    }
+
     /// <summary>
     /// Initialize a new .NET solution.
     /// </summary>
@@ -307,6 +321,45 @@ public static partial class DotnetOperations
                 string dotnetNewErrorText = await dotnetNewProcess.StandardError.ReadToEndAsync();
 
                 throw new Exception($"Failed to add NuGet.Config:\n\n{dotnetNewErrorText}");
+            }
+        }
+        catch (Exception)
+        {
+            ConsoleUtils.WriteError("Failed. ❌", false);
+            throw;
+        }
+
+        ConsoleUtils.WriteSuccess("Done. ✅", false);
+    }
+
+    public static async Task AddProjectToSolutionAsync(string solutionFilePath, string projectPath)
+    {
+        string solutionFilePathRelative = Path.GetRelativePath(Directory.GetCurrentDirectory(), solutionFilePath);
+        string projectPathRelative = Path.GetRelativePath(Directory.GetCurrentDirectory(), projectPath);
+
+        ConsoleUtils.WriteInfo($"\n📄 Adding project '{projectPathRelative}' to solution '{solutionFilePathRelative}'... ", false);
+
+        ProcessStartInfo dotnetNewProcessStartInfo = CreateDotnetProcessStartInfo(
+            arguments: [
+                "sln",
+                solutionFilePath,
+                "add",
+                projectPath
+            ],
+            workingDirectory: Path.GetDirectoryName(solutionFilePath) ?? throw new Exception("Failed to get solution directory.")
+        );
+
+        try
+        {
+            using Process dotnetNewProcess = Process.Start(dotnetNewProcessStartInfo) ?? throw new Exception("Failed to start 'dotnet sln add' process.");
+
+            await dotnetNewProcess.WaitForExitAsync();
+
+            if (dotnetNewProcess.ExitCode != 0)
+            {
+                string dotnetNewErrorText = await dotnetNewProcess.StandardError.ReadToEndAsync();
+
+                throw new Exception($"Failed to add project '{projectPathRelative}' to solution '{solutionFilePathRelative}':\n\n{dotnetNewErrorText}");
             }
         }
         catch (Exception)
