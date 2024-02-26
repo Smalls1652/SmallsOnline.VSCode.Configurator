@@ -1,6 +1,6 @@
 using System.CommandLine;
 
-namespace SmallsOnline.VSCode.Configurator.Commands;
+namespace SmallsOnline.VSCode.Configurator.Commands.Csharp;
 
 /// <summary>
 /// Command for adding a new C# project to the workspace.

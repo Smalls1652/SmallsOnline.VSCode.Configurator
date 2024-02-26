@@ -4,7 +4,7 @@ using SmallsOnline.VSCode.Configurator.External;
 using SmallsOnline.VSCode.Configurator.Models.Commands;
 using SmallsOnline.VSCode.Configurator.Utilities;
 
-namespace SmallsOnline.VSCode.Configurator.Commands;
+namespace SmallsOnline.VSCode.Configurator.Commands.Csharp;
 
 /// <summary>
 /// Action for the `csharp add-project` command.
