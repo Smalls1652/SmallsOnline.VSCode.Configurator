@@ -14,7 +14,7 @@ public class CsharpInitCommandAction : AsynchronousCliAction
     /// <inheritdoc />
     public override async Task<int> InvokeAsync(ParseResult parseResult, CancellationToken cancellationToken = default)
     {
-        InitCsharpCommandCliOptions options;
+        CsharpInitCommandCliOptions options;
         try
         {
             options = new(parseResult);

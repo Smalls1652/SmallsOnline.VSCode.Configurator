@@ -3,15 +3,15 @@ using System.CommandLine;
 namespace SmallsOnline.VSCode.Configurator.Models.Commands;
 
 /// <summary>
-/// Options for the 'init csharp' command.
+/// Options for the 'csharp init' command.
 /// </summary>
-public class InitCsharpCommandCliOptions
+public class CsharpInitCommandCliOptions
 {
     /// <summary>
-    /// Create a new instance of <see cref="InitCsharpCommandCliOptions"/>.
+    /// Create a new instance of <see cref="CsharpInitCommandCliOptions"/>.
     /// </summary>
     /// <param name="parseResult">The parse result from the command line.</param>
-    public InitCsharpCommandCliOptions(ParseResult parseResult)
+    public CsharpInitCommandCliOptions(ParseResult parseResult)
     {
         OutputDirectory = ParseOutputDirectoryArgument(parseResult);
         SolutionName = ParseSolutionNameArgument(parseResult);
