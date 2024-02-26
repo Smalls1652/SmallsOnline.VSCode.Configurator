@@ -4,17 +4,17 @@ using SmallsOnline.VSCode.Configurator.External;
 using SmallsOnline.VSCode.Configurator.Models.Commands;
 using SmallsOnline.VSCode.Configurator.Utilities;
 
-namespace SmallsOnline.VSCode.Configurator.Commands;
+namespace SmallsOnline.VSCode.Configurator.Commands.CSharp;
 
 /// <summary>
 /// Action for the `csharp add-project` command.
 /// </summary>
-public class CsharpAddProjectCommandAction : AsynchronousCliAction
+public class CSharpAddProjectCommandAction : AsynchronousCliAction
 {
     /// <inheritdoc />
     public override async Task<int> InvokeAsync(ParseResult parseResult, CancellationToken cancellationToken = default)
     {
-        CsharpAddProjectCommandCliOptions options;
+        CSharpAddProjectCommandCliOptions options;
         try
         {
             options = new(parseResult);

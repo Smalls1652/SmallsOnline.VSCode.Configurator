@@ -1,21 +1,20 @@
 using System.CommandLine;
 using System.CommandLine.Invocation;
-using System.Diagnostics;
 using SmallsOnline.VSCode.Configurator.External;
 using SmallsOnline.VSCode.Configurator.Models.Commands;
 using SmallsOnline.VSCode.Configurator.Utilities;
 
-namespace SmallsOnline.VSCode.Configurator.Commands;
+namespace SmallsOnline.VSCode.Configurator.Commands.CSharp;
 
 /// <summary>
-/// Action for the `init csharp` command.
+/// Action for the `csharp init` command.
 /// </summary>
-public class InitCsharpCommandAction : AsynchronousCliAction
+public class CSharpInitCommandAction : AsynchronousCliAction
 {
     /// <inheritdoc />
     public override async Task<int> InvokeAsync(ParseResult parseResult, CancellationToken cancellationToken = default)
     {
-        InitCsharpCommandCliOptions options;
+        CSharpInitCommandCliOptions options;
         try
         {
             options = new(parseResult);
