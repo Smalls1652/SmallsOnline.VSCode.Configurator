@@ -29,6 +29,12 @@ public static partial class DotnetOperations
         };
     }
 
+    /// <summary>
+    /// Run a 'dotnet' process asynchronously.
+    /// </summary>
+    /// <param name="processStartInfo">The <see cref="ProcessStartInfo"/> for the 'dotnet' process.</param>
+    /// <returns></returns>
+    /// <exception cref="Exception">An error occurred while running the 'dotnet' process.</exception>
     private static async Task RunDotnetProcessAsync(ProcessStartInfo processStartInfo)
     {
         using Process dotnetProcess = Process.Start(processStartInfo) ?? throw new Exception("Failed to start 'dotnet' process.");
@@ -332,6 +338,13 @@ public static partial class DotnetOperations
         ConsoleUtils.WriteSuccess("Done. ✅", false);
     }
 
+    /// <summary>
+    /// Add a project to a .NET solution.
+    /// </summary>
+    /// <param name="solutionFilePath">The path to the solution file.</param>
+    /// <param name="projectPath">The path to the project.</param>
+    /// <returns></returns>
+    /// <exception cref="Exception">An error occurred while adding the project to the solution.</exception>
     public static async Task AddProjectToSolutionAsync(string solutionFilePath, string projectPath)
     {
         string solutionFilePathRelative = Path.GetRelativePath(Directory.GetCurrentDirectory(), solutionFilePath);

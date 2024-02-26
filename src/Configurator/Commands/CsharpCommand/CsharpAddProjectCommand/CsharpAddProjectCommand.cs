@@ -2,8 +2,14 @@ using System.CommandLine;
 
 namespace SmallsOnline.VSCode.Configurator.Commands;
 
+/// <summary>
+/// Command for adding a new C# project to the workspace.
+/// </summary>
 public class CsharpAddProjectCommand : CliCommand
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CsharpAddProjectCommand"/> class.
+    /// </summary>
     public CsharpAddProjectCommand() : base("add-project")
     {
         Description = "Add a new C# project to the workspace.";

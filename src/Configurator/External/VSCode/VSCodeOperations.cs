@@ -8,8 +8,23 @@ using SmallsOnline.VSCode.Configurator.Utilities;
 
 namespace SmallsOnline.VSCode.Configurator.External;
 
+/// <summary>
+/// A collection of methods for interacting with Visual Studio Code configuration files.
+/// </summary>
 public static class VSCodeOperations
 {
+    /// <summary>
+    /// Adds a C# project to the tasks.json file.
+    /// </summary>
+    /// <param name="solutionPath">The path to the solution file.</param>
+    /// <param name="projectPath">The path to the project.</param>
+    /// <param name="projectFriendlyName">A friendly name for the project.</param>
+    /// <param name="isRunnable">Whether the project is runnable with 'dotnet run'.</param>
+    /// <param name="isWatchable">Whether the project is watchable with 'dotnet watch'.</param>
+    /// <returns></returns>
+    /// <exception cref="InvalidOperationException">The solution file path is invalid.</exception>
+    /// <exception cref="DirectoryNotFoundException">The .vscode directory does not exist.</exception>
+    /// <exception cref="FileNotFoundException">The tasks.json file does not exist.</exception>
     public static async Task AddCsharpProjectToTasksJson(string solutionPath, string projectPath, string projectFriendlyName, bool isRunnable, bool isWatchable)
     {
         ConsoleUtils.WriteInfo($"\n👉 Adding project to tasks.json... ", false);
@@ -108,6 +123,13 @@ public static class VSCodeOperations
         ConsoleUtils.WriteSuccess("Done. ✅", false);
     }
 
+    /// <summary>
+    /// Gets an input node, in the 'inputs' property, based off of the 'id' property.
+    /// </summary>
+    /// <param name="inputsNode">The <see cref="JsonNode"/> representing the 'inputs' property.</param>
+    /// <param name="id">The value of the 'id' property to search for.</param>
+    /// <returns>The <see cref="JsonNode"/> representing the input.</returns>
+    /// <exception cref="InvalidOperationException">An issue occurred while searching for the input.</exception>
     private static JsonNode GetInputNodeById(this JsonNode? inputsNode, string id)
     {
         if (inputsNode is null)
@@ -150,6 +172,15 @@ public static class VSCodeOperations
         }
     }
 
+    /// <summary>
+    /// Adds an option to an input node in the 'inputs' property.
+    /// </summary>
+    /// <param name="inputsNode">The <see cref="JsonNode"/> representing the 'inputs' property.</param>
+    /// <param name="inputId">The value of the 'id' property to add the new option to.</param>
+    /// <param name="label">The label for the new option.</param>
+    /// <param name="value">The value for the new option.</param>
+    /// <returns>The modified <see cref="JsonNode"/> representing the 'inputs' property.</returns>
+    /// <exception cref="InvalidOperationException">An issue occurred while adding the option to the input node.</exception>
     private static JsonNode AddOptionToInputNode(this JsonNode inputsNode, string inputId, string label, string value)
     {
         if (inputsNode is null)

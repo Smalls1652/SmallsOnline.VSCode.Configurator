@@ -2,8 +2,15 @@ using System.CommandLine;
 
 namespace SmallsOnline.VSCode.Configurator.Models.Commands;
 
+/// <summary>
+/// Options for the 'csharp add-project' command.
+/// </summary>
 public class CsharpAddProjectCommandCliOptions
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CsharpAddProjectCommandCliOptions"/> class.
+    /// </summary>
+    /// <param name="parseResult">The parse result from the command line.</param>
     public CsharpAddProjectCommandCliOptions(ParseResult parseResult)
     {
         SolutionFilePath = ParseSolutionFilePathArgument(parseResult);
@@ -13,16 +20,39 @@ public class CsharpAddProjectCommandCliOptions
         IsWatchable = ParseIsWatchableArgument(parseResult);
     }
 
+    /// <summary>
+    /// The path to the solution file.
+    /// </summary>
     public string SolutionFilePath { get; set; }
 
+    /// <summary>
+    /// The path to the project.
+    /// </summary>
     public string ProjectPath { get; set; }
 
+    /// <summary>
+    /// A friendly name for the project.
+    /// </summary>
     public string ProjectFriendlyName { get; set; }
 
+    /// <summary>
+    /// Whether the project is runnable with 'dotnet run'.
+    /// </summary>
     public bool IsRunnable { get; set; }
 
+    /// <summary>
+    /// Whether the project is watchable with 'dotnet watch'.
+    /// </summary>
     public bool IsWatchable { get; set; }
 
+    /// <summary>
+    /// Parse the '--solution-file-path' argument from the command line.
+    /// </summary>
+    /// <param name="parseResult">The parse result from the command line.</param>
+    /// <returns>The path to the solution file.</returns>
+    /// <exception cref="NullReferenceException">No solution file path provided.</exception>
+    /// <exception cref="InvalidOperationException">Multiple solution files found.</exception>
+    /// <exception cref="FileNotFoundException">The solution file does not exist.</exception>
     private static string ParseSolutionFilePathArgument(ParseResult parseResult)
     {
         string? solutionFilePath = parseResult.GetValue<string>("--solution-file-path");
@@ -54,6 +84,14 @@ public class CsharpAddProjectCommandCliOptions
         return solutionFilePath;
     }
 
+    /// <summary>
+    /// Parse the '--project-path' argument from the command line.
+    /// </summary>
+    /// <param name="parseResult">The parse result from the command line.</param>
+    /// <returns>The path to the project.</returns>
+    /// <exception cref="NullReferenceException">No project path provided.</exception>
+    /// <exception cref="DirectoryNotFoundException">The project path does not exist.</exception>
+    /// <exception cref="FileNotFoundException">No '.csproj' file exists in the directory specified.</exception>
     private static string ParseProjectPathArgument(ParseResult parseResult)
     {
         string? projectPath = parseResult.GetValue<string>("--project-path");
@@ -80,6 +118,11 @@ public class CsharpAddProjectCommandCliOptions
         return projectPath;
     }
 
+    /// <summary>
+    /// Parse the '--project-friendly-name' argument from the command line.
+    /// </summary>
+    /// <param name="parseResult">The parse result from the command line.</param>
+    /// <returns>The friendly name of the project.</returns>
     private string ParseProjectFriendlyNameArgument(ParseResult parseResult)
     {
         string? projectFriendlyName = parseResult.GetValue<string>("--project-friendly-name");
@@ -92,12 +135,22 @@ public class CsharpAddProjectCommandCliOptions
         return projectFriendlyName;
     }
 
-    private bool ParseIsRunnableArgument(ParseResult parseResult)
+    /// <summary>
+    /// Parse the '--is-runnable' argument from the command line.
+    /// </summary>
+    /// <param name="parseResult">The parse result from the command line.</param>
+    /// <returns>Whether the project is runnable.</returns>
+    private static bool ParseIsRunnableArgument(ParseResult parseResult)
     {
         return parseResult.GetValue<bool>("--is-runnable");
     }
 
-    private bool ParseIsWatchableArgument(ParseResult parseResult)
+    /// <summary>
+    /// Parse the '--is-watchable' argument from the command line.
+    /// </summary>
+    /// <param name="parseResult">The parse result from the command line.</param>
+    /// <returns>Whether the project is watchable.</returns>
+    private static bool ParseIsWatchableArgument(ParseResult parseResult)
     {
         return parseResult.GetValue<bool>("--is-watchable");
     }

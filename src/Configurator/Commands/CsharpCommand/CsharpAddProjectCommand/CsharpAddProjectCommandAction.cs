@@ -6,8 +6,12 @@ using SmallsOnline.VSCode.Configurator.Utilities;
 
 namespace SmallsOnline.VSCode.Configurator.Commands;
 
+/// <summary>
+/// Action for the `csharp add-project` command.
+/// </summary>
 public class CsharpAddProjectCommandAction : AsynchronousCliAction
 {
+    /// <inheritdoc />
     public override async Task<int> InvokeAsync(ParseResult parseResult, CancellationToken cancellationToken = default)
     {
         CsharpAddProjectCommandCliOptions options;
