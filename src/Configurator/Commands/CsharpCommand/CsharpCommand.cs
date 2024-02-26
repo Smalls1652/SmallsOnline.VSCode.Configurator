@@ -1,4 +1,5 @@
 using System.CommandLine;
+using SmallsOnline.VSCode.Configurator.Commands.Csharp;
 
 namespace SmallsOnline.VSCode.Configurator.Commands;
 
@@ -14,6 +15,7 @@ public class CsharpCommand : CliCommand
     {
         Description = "Commands for creating and managing C# projects.";
 
+        Add(new CsharpInitCommand());
         Add(new CsharpAddProjectCommand());
     }
 }
