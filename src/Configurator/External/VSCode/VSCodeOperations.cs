@@ -27,7 +27,7 @@ public static class VSCodeOperations
     /// <exception cref="FileNotFoundException">The tasks.json file does not exist.</exception>
     public static async Task AddCsharpProjectToTasksJson(string solutionPath, string projectPath, string projectFriendlyName, bool isRunnable, bool isWatchable)
     {
-        ConsoleUtils.WriteInfo($"\n👉 Adding project to tasks.json... ", false);
+        ConsoleUtils.WriteInfo($"👉 Adding project to tasks.json... ", false);
 
         string? rootProjectDirectoryPath = Path.GetDirectoryName(solutionPath);
 
@@ -116,11 +116,11 @@ public static class VSCodeOperations
         }
         catch (Exception)
         {
-            ConsoleUtils.WriteError("Failed. ❌", false);
+            ConsoleUtils.WriteError("Failed. ❌\n", false);
             throw;
         }
 
-        ConsoleUtils.WriteSuccess("Done. ✅", false);
+        ConsoleUtils.WriteSuccess("Done. ✅\n", false);
     }
 
     /// <summary>
