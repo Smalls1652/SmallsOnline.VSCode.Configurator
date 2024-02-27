@@ -35,6 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="GitVersion.MsBuild" Version="5.12.0" PrivateAssets="all" Condition="'$(GITVERSION_LOCAL_BUILD)'=='true'" />
     <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.24126.1" />
   </ItemGroup>
 

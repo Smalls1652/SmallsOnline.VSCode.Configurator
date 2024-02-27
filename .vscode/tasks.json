@@ -122,7 +122,10 @@
 				"${input:runtimeIdentifier}"
 			],
 			"options": {
-				"cwd": "${workspaceFolder}"
+				"cwd": "${workspaceFolder}",
+				"env": {
+					"GITVERSION_LOCAL_BUILD": "true"
+				}
 			},
 			"runOptions": {
 				"instanceLimit": 1
