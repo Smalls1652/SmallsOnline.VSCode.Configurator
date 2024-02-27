@@ -16,6 +16,7 @@ The pre-compiled binary **is not signed/notarized** by Apple, so, by default, it
 
 ```shell
 # Replace /path/to/vscode-configurator to where you extracted the files to.
+
 xattr -r -d com.apple.quarantine /path/to/vscode-configurator
 chmod +x /path/to/vscode-configurator
 ```
@@ -26,6 +27,7 @@ You will need to add _"executable"_ permissions to the binary by:
 
 ```shell
 # Replace /path/to/vscode-configurator to where you extracted the files to.
+
 chmod +x /path/to/vscode-configurator
 ```
 
