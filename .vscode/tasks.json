@@ -166,7 +166,10 @@
 				"showReuseMessage": true,
 				"clear": true,
 			},
-			"problemMatcher": []
+			"problemMatcher": [],
+			"dependsOn": [
+				"Publish: Configurator"
+			]
 		}
 		// Remaining tasks are only for the VSCode launch configs
 		// or are supporting tasks.
