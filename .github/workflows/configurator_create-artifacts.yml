@@ -86,7 +86,7 @@ jobs:
                 path: ${{ github.workspace }}/artifacts/publish/Configurator/release_osx-x64/**/*
                 if-no-files-found: error
 
-            - name: Create artifact (macOS - x64)
+            - name: Create artifact (macOS - arm64)
               uses: actions/upload-artifact@v4
               if: ${{ runner.os == 'macOS' }}
               with:
