@@ -6,6 +6,12 @@ This is a CLI tool to quickly bootstrap a new project for VSCode. More specifica
 > 
 > It's mainly just a tool I'm writing for myself.
 
+## 📄 Docs
+
+You can view the docs for installing and using the CLI here:
+
+- [Docs](./docs/README.md)
+
 ## 🏗️ Building from source
 
 ### 🧰 Pre-requisites
