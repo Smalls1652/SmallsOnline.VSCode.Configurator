@@ -32,7 +32,7 @@ public static partial class TemplatesOperations
             "tasks.json"
         );
 
-        ConsoleUtils.WriteInfo($"\n📄 Copying 'tasks.json' to '.vscode' directory... ", false);
+        ConsoleUtils.WriteInfo($"- 📄 Copying 'tasks.json' to '.vscode' directory... ", false);
 
         try
         {
@@ -44,7 +44,7 @@ public static partial class TemplatesOperations
         }
         catch (Exception)
         {
-            ConsoleUtils.WriteError("Failed. ❌", false);
+            ConsoleUtils.WriteError("Failed. ❌\n", false);
             throw;
         }
 
@@ -57,6 +57,6 @@ public static partial class TemplatesOperations
 
         await File.WriteAllTextAsync(tasksJsonOutputPath, tasksJsonContent);
 
-        ConsoleUtils.WriteSuccess("Done. ✅", false);
+        ConsoleUtils.WriteSuccess("Done. ✅\n", false);
     }
 }

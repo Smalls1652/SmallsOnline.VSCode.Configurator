@@ -27,16 +27,16 @@ public class CSharpInitCommandAction : AsynchronousCliAction
 
         try
         {
-            await GitOperations.InitializeGitRepositoryAsync(options.OutputDirectory);
-
+            ConsoleUtils.WriteInfo("🚀 Basic");
             await DotnetOperations.AddGlobalJsonAsync(options.OutputDirectory);
+
+            ConsoleUtils.WriteInfo("\n🚀 Git");
+            await GitOperations.InitializeGitRepositoryAsync(options.OutputDirectory);
             await DotnetOperations.AddGitIgnoreAsync(options.OutputDirectory);
 
+            ConsoleUtils.WriteInfo("\n🚀 .NET");
             await DotnetOperations.InitializeDotnetSolutionAsync(options.OutputDirectory, options.SolutionName);
             await DotnetOperations.AddBuildPropsAsync(options.OutputDirectory);
-            
-            await TemplatesOperations.CopyCSharpSettingsTemplateAsync(options.OutputDirectory, options.SolutionName);
-            await TemplatesOperations.CopyCSharpTasksTemplateAsync(options.OutputDirectory, options.SolutionName);
 
             if (options.AddNugetConfig)
             {
@@ -45,9 +45,15 @@ public class CSharpInitCommandAction : AsynchronousCliAction
 
             if (options.AddGitVersion)
             {
+                ConsoleUtils.WriteInfo("\n🚀 GitVersion");
                 await DotnetOperations.AddDotnetToolAsync(options.OutputDirectory, "GitVersion.Tool");
                 TemplatesOperations.CopyCSharpGitVersionYaml(options.OutputDirectory);
             }
+            
+            ConsoleUtils.WriteInfo("\n🚀 VSCode configs");
+            await TemplatesOperations.CopyCSharpSettingsTemplateAsync(options.OutputDirectory, options.SolutionName);
+            await TemplatesOperations.CopyCSharpTasksTemplateAsync(options.OutputDirectory, options.SolutionName);
+
         }
         catch (Exception ex)
         {
@@ -55,7 +61,7 @@ public class CSharpInitCommandAction : AsynchronousCliAction
             return 1;
         }
 
-        ConsoleUtils.WriteSuccess("\n\n🥳 VSCode project initialized!");
+        ConsoleUtils.WriteSuccess("\n🥳 VSCode project initialized!");
         return 0;
     }
 }

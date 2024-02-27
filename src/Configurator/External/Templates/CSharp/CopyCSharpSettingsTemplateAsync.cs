@@ -32,7 +32,7 @@ public static partial class TemplatesOperations
             "settings.json"
         );
 
-        ConsoleUtils.WriteInfo($"\n📄 Copying 'settings.json' to '.vscode' directory... ", false);
+        ConsoleUtils.WriteInfo($"- 📄 Copying 'settings.json' to '.vscode' directory... ", false);
 
         try
         {
@@ -44,7 +44,7 @@ public static partial class TemplatesOperations
         }
         catch (Exception)
         {
-            ConsoleUtils.WriteError("Failed. ❌", false);
+            ConsoleUtils.WriteError("Failed. ❌\n", false);
             throw;
         }
 
@@ -57,6 +57,6 @@ public static partial class TemplatesOperations
 
         await File.WriteAllTextAsync(settingsJsonOutputPath, settingsJsonContent);
 
-        ConsoleUtils.WriteSuccess("Done. ✅", false);
+        ConsoleUtils.WriteSuccess("Done. ✅\n", false);
     }
 }

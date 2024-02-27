@@ -36,7 +36,7 @@ public static class GitOperations
     /// <returns></returns>
     public static async Task InitializeGitRepositoryAsync(string outputDirectory)
     {
-        ConsoleUtils.WriteInfo("\n📦 Initializing Git repository... ", false);
+        ConsoleUtils.WriteInfo("- 📦 Initializing Git repository... ", false);
 
         ProcessStartInfo gitInitProcessStartInfo = CreateGitProcessStartInfo(
             arguments: [
@@ -49,7 +49,8 @@ public static class GitOperations
         {
             using Process gitInitProcess = Process.Start(gitInitProcessStartInfo) ?? throw new Exception("Failed to start 'git init' process.");
             
-            await gitInitProcess.WaitForExitAsync();
+            using Task task = gitInitProcess.WaitForExitAsync();
+            await ConsoleUtils.WriteProgressIndicatorAsync(task, Console.GetCursorPosition());
 
             if (gitInitProcess.ExitCode != 0)
             {
@@ -60,10 +61,10 @@ public static class GitOperations
         }
         catch (Exception)
         {
-            ConsoleUtils.WriteError("Failed. ❌", false);
+            ConsoleUtils.WriteError("Failed. ❌\n", false);
             throw;
         }
 
-        ConsoleUtils.WriteSuccess("Done. ✅", false);
+        ConsoleUtils.WriteSuccess("Done. ✅\n", false);
     }
 }

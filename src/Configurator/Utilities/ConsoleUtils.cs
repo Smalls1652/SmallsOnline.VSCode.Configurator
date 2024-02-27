@@ -135,4 +135,42 @@ public static class ConsoleUtils
     /// </summary>
     /// <param name="message">The success message to write.</param>
     public static void WriteSuccess(string message) => WriteSuccess(message, true);
+
+    /// <summary>
+    /// Writes a progress indicator to the console while a task is running.
+    /// </summary>
+    /// <param name="task">The task to wait for.</param>
+    /// <param name="consolePos">The current position of the console cursor.</param>
+    /// <returns></returns>
+    public static async Task WriteProgressIndicatorAsync(Task task, (int Left, int Top) consolePos)
+    {
+        Console.CursorVisible = false;
+        int counter = 1;
+        while (!task.IsCompleted)
+        {
+            await Task.Delay(100);
+
+            if (counter > 5)
+            {
+                counter = 1;
+            }
+
+            Console.SetCursorPosition(consolePos.Left, consolePos.Top);
+
+            string progressText = counter switch
+            {
+                2 => "/",
+                3 => "-",
+                4 => "\\",
+                _ => "|"
+            };
+
+            Console.Write(progressText);
+
+            counter++;
+        }
+
+        Console.SetCursorPosition(consolePos.Left, consolePos.Top);
+        Console.CursorVisible = true;
+    }
 }
