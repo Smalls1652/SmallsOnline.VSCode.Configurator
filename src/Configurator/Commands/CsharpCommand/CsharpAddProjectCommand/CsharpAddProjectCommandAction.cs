@@ -25,10 +25,6 @@ public class CSharpAddProjectCommandAction : AsynchronousCliAction
             return 1;
         }
 
-        ConsoleUtils.WriteInfo($"📄 Solution file path: {options.SolutionFilePath}");
-        ConsoleUtils.WriteInfo($"📂 Project path: {options.ProjectPath}");
-        ConsoleUtils.WriteInfo($"📝 Project friendly name: {options.ProjectFriendlyName}");
-
         try
         {
             await DotnetOperations.AddProjectToSolutionAsync(options.SolutionFilePath, options.ProjectPath);
@@ -37,8 +33,7 @@ public class CSharpAddProjectCommandAction : AsynchronousCliAction
         catch (Exception ex)
         {
             ConsoleUtils.WriteError($"\n❌ {ex.Message}");
-            throw;
-            //return 1;
+            return 1;
         }
 
         return 0;
