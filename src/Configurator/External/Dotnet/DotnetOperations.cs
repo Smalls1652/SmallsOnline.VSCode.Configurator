@@ -350,7 +350,7 @@ public static partial class DotnetOperations
         string solutionFilePathRelative = Path.GetRelativePath(Directory.GetCurrentDirectory(), solutionFilePath);
         string projectPathRelative = Path.GetRelativePath(Directory.GetCurrentDirectory(), projectPath);
 
-        ConsoleUtils.WriteInfo($"- 📄 Adding project '{projectPathRelative}' to solution '{solutionFilePathRelative}'... ", false);
+        ConsoleUtils.WriteInfo($"- 📄 Adding '{projectPathRelative}' to solution '{solutionFilePathRelative}'... ", false);
 
         ProcessStartInfo dotnetNewProcessStartInfo = CreateDotnetProcessStartInfo(
             arguments: [

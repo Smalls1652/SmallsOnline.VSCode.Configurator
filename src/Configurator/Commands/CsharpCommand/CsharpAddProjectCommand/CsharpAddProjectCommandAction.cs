@@ -27,6 +27,7 @@ public class CSharpAddProjectCommandAction : AsynchronousCliAction
 
         try
         {
+            ConsoleUtils.WriteInfo("🚀 Add project");
             await DotnetOperations.AddProjectToSolutionAsync(options.SolutionFilePath, options.ProjectPath);
             await VSCodeOperations.AddCsharpProjectToTasksJson(options.SolutionFilePath, options.ProjectPath, options.ProjectFriendlyName, options.IsRunnable, options.IsWatchable);
         }
@@ -35,6 +36,8 @@ public class CSharpAddProjectCommandAction : AsynchronousCliAction
             ConsoleUtils.WriteError($"\n❌ {ex.Message}");
             return 1;
         }
+
+        ConsoleUtils.WriteSuccess($"\n🥳 '{Path.GetRelativePath(Directory.GetCurrentDirectory(), options.ProjectPath)}' has been configured for the workspace.");
 
         return 0;
     }
