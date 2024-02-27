@@ -25,9 +25,9 @@ public static partial class TemplatesOperations
 
         if (!Directory.Exists(vscodeDirectoryPath))
         {
-            ConsoleUtils.WriteInfo("\n📁 Creating '.vscode' directory... ", false);
+            ConsoleUtils.WriteInfo("- 📁 Creating '.vscode' directory... ", false);
             Directory.CreateDirectory(vscodeDirectoryPath);
-            ConsoleUtils.WriteSuccess("Done. ✅", false);
+            ConsoleUtils.WriteSuccess("Done. ✅\n", false);
         }
     }
 }

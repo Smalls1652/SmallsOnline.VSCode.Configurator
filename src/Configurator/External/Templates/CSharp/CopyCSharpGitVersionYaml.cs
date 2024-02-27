@@ -26,7 +26,7 @@ public static partial class TemplatesOperations
             "GitVersion.yml"
         );
 
-        ConsoleUtils.WriteInfo($"\n📄 Copying 'GitVersion.yml' to project root... ", false);
+        ConsoleUtils.WriteInfo($"- 📄 Copying 'GitVersion.yml' to project root... ", false);
 
         try
         {
@@ -38,10 +38,10 @@ public static partial class TemplatesOperations
         }
         catch (Exception)
         {
-            ConsoleUtils.WriteError("Failed. ❌", false);
+            ConsoleUtils.WriteError("Failed. ❌\n", false);
             throw;
         }
 
-        ConsoleUtils.WriteSuccess("Done. ✅", false);
+        ConsoleUtils.WriteSuccess("Done. ✅\n", false);
     }
 }

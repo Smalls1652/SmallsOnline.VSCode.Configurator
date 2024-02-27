@@ -57,7 +57,7 @@ public static partial class DotnetOperations
     /// <returns></returns>
     public static async Task InitializeDotnetSolutionAsync(string outputDirectory, string solutionName)
     {
-        ConsoleUtils.WriteInfo($"\n📦 Initializing .NET solution '{solutionName}.sln'... ", false);
+        ConsoleUtils.WriteInfo($"- 📦 Initializing .NET solution '{solutionName}.sln'... ", false);
 
         ProcessStartInfo dotnetNewProcessStartInfo = CreateDotnetProcessStartInfo(
             arguments: [
@@ -73,7 +73,7 @@ public static partial class DotnetOperations
         {
             using Process dotnetNewProcess = Process.Start(dotnetNewProcessStartInfo) ?? throw new Exception("Failed to start 'dotnet new sln' process.");
 
-            await dotnetNewProcess.WaitForExitAsync();
+            await ConsoleUtils.WriteProgressIndicatorAsync(dotnetNewProcess.WaitForExitAsync(), Console.GetCursorPosition());
 
             if (dotnetNewProcess.ExitCode != 0)
             {
@@ -84,11 +84,11 @@ public static partial class DotnetOperations
         }
         catch (Exception)
         {
-            ConsoleUtils.WriteError("Failed. ❌", false);
+            ConsoleUtils.WriteError("Failed. ❌\n", false);
             throw;
         }
 
-        ConsoleUtils.WriteSuccess("Done. ✅", false);
+        ConsoleUtils.WriteSuccess("Done. ✅\n", false);
     }
 
     /// <summary>
@@ -103,7 +103,7 @@ public static partial class DotnetOperations
             return;
         }
 
-        ConsoleUtils.WriteInfo($"\n📦 Initializing .NET tool manifest... ", false);
+        ConsoleUtils.WriteInfo($"- 📦 Initializing .NET tool manifest... ", false);
 
         ProcessStartInfo dotnetNewProcessStartInfo = CreateDotnetProcessStartInfo(
             arguments: [
@@ -117,7 +117,7 @@ public static partial class DotnetOperations
         {
             using Process dotnetNewProcess = Process.Start(dotnetNewProcessStartInfo) ?? throw new Exception("Failed to start 'dotnet new tool-manifest' process.");
 
-            await dotnetNewProcess.WaitForExitAsync();
+            await ConsoleUtils.WriteProgressIndicatorAsync(dotnetNewProcess.WaitForExitAsync(), Console.GetCursorPosition());
 
             if (dotnetNewProcess.ExitCode != 0)
             {
@@ -128,11 +128,11 @@ public static partial class DotnetOperations
         }
         catch (Exception)
         {
-            ConsoleUtils.WriteError("Failed. ❌", false);
+            ConsoleUtils.WriteError("Failed. ❌\n", false);
             throw;
         }
 
-        ConsoleUtils.WriteSuccess("Done. ✅", false);
+        ConsoleUtils.WriteSuccess("Done. ✅\n", false);
     }
 
     /// <summary>
@@ -145,7 +145,7 @@ public static partial class DotnetOperations
     {
         await InitializeDotnetToolManifestAsync(outputDirectory);
 
-        ConsoleUtils.WriteInfo($"\n📦 Adding .NET tool '{toolName}'... ", false);
+        ConsoleUtils.WriteInfo($"- 📦 Adding .NET tool '{toolName}'... ", false);
 
         ProcessStartInfo dotnetNewProcessStartInfo = CreateDotnetProcessStartInfo(
             arguments: [
@@ -161,7 +161,7 @@ public static partial class DotnetOperations
         {
             using Process dotnetNewProcess = Process.Start(dotnetNewProcessStartInfo) ?? throw new Exception($"Failed to start 'dotnet tool install {toolName}' process.");
 
-            await dotnetNewProcess.WaitForExitAsync();
+            await ConsoleUtils.WriteProgressIndicatorAsync(dotnetNewProcess.WaitForExitAsync(), Console.GetCursorPosition());
 
             if (dotnetNewProcess.ExitCode != 0)
             {
@@ -172,11 +172,11 @@ public static partial class DotnetOperations
         }
         catch (Exception)
         {
-            ConsoleUtils.WriteError("Failed. ❌", false);
+            ConsoleUtils.WriteError("Failed. ❌\n", false);
             throw;
         }
 
-        ConsoleUtils.WriteSuccess("Done. ✅", false);
+        ConsoleUtils.WriteSuccess("Done. ✅\n", false);
     }
 
     /// <summary>
@@ -186,7 +186,7 @@ public static partial class DotnetOperations
     /// <returns></returns>
     public static async Task AddGitIgnoreAsync(string outputDirectory)
     {
-        ConsoleUtils.WriteInfo($"\n📄 Adding '.gitignore' to project root... ", false);
+        ConsoleUtils.WriteInfo($"- 📄 Adding '.gitignore' to project root... ", false);
 
         ProcessStartInfo dotnetNewProcessStartInfo = CreateDotnetProcessStartInfo(
             arguments: [
@@ -200,7 +200,7 @@ public static partial class DotnetOperations
         {
             using Process dotnetNewProcess = Process.Start(dotnetNewProcessStartInfo) ?? throw new Exception("Failed to start 'dotnet new gitignore' process.");
 
-            await dotnetNewProcess.WaitForExitAsync();
+            await ConsoleUtils.WriteProgressIndicatorAsync(dotnetNewProcess.WaitForExitAsync(), Console.GetCursorPosition());
 
             if (dotnetNewProcess.ExitCode != 0)
             {
@@ -211,11 +211,11 @@ public static partial class DotnetOperations
         }
         catch (Exception)
         {
-            ConsoleUtils.WriteError("Failed. ❌", false);
+            ConsoleUtils.WriteError("Failed. ❌\n", false);
             throw;
         }
 
-        ConsoleUtils.WriteSuccess("Done. ✅", false);
+        ConsoleUtils.WriteSuccess("Done. ✅\n", false);
     }
 
     /// <summary>
@@ -225,7 +225,7 @@ public static partial class DotnetOperations
     /// <returns></returns>
     public static async Task AddBuildPropsAsync(string outputDirectory)
     {
-        ConsoleUtils.WriteInfo($"\n📄 Adding 'build.props' to project root... ", false);
+        ConsoleUtils.WriteInfo($"- 📄 Adding 'build.props' to project root... ", false);
 
         ProcessStartInfo dotnetNewProcessStartInfo = CreateDotnetProcessStartInfo(
             arguments: [
@@ -240,7 +240,7 @@ public static partial class DotnetOperations
         {
             using Process dotnetNewProcess = Process.Start(dotnetNewProcessStartInfo) ?? throw new Exception("Failed to start 'dotnet new buildprops' process.");
 
-            await dotnetNewProcess.WaitForExitAsync();
+            await ConsoleUtils.WriteProgressIndicatorAsync(dotnetNewProcess.WaitForExitAsync(), Console.GetCursorPosition());
 
             if (dotnetNewProcess.ExitCode != 0)
             {
@@ -251,11 +251,11 @@ public static partial class DotnetOperations
         }
         catch (Exception)
         {
-            ConsoleUtils.WriteError("Failed. ❌", false);
+            ConsoleUtils.WriteError("Failed. ❌\n", false);
             throw;
         }
 
-        ConsoleUtils.WriteSuccess("Done. ✅", false);
+        ConsoleUtils.WriteSuccess("Done. ✅\n", false);
     }
 
     /// <summary>
@@ -265,7 +265,7 @@ public static partial class DotnetOperations
     /// <returns></returns>
     public static async Task AddGlobalJsonAsync(string outputDirectory)
     {
-        ConsoleUtils.WriteInfo($"\n📄 Adding 'global.json' to project root... ", false);
+        ConsoleUtils.WriteInfo($"- 📄 Adding 'global.json' to project root... ", false);
 
         ProcessStartInfo dotnetNewProcessStartInfo = CreateDotnetProcessStartInfo(
             arguments: [
@@ -281,7 +281,7 @@ public static partial class DotnetOperations
         {
             using Process dotnetNewProcess = Process.Start(dotnetNewProcessStartInfo) ?? throw new Exception("Failed to start 'dotnet new globaljson' process.");
 
-            await dotnetNewProcess.WaitForExitAsync();
+            await ConsoleUtils.WriteProgressIndicatorAsync(dotnetNewProcess.WaitForExitAsync(), Console.GetCursorPosition());
 
             if (dotnetNewProcess.ExitCode != 0)
             {
@@ -292,11 +292,11 @@ public static partial class DotnetOperations
         }
         catch (Exception)
         {
-            ConsoleUtils.WriteError("Failed. ❌", false);
+            ConsoleUtils.WriteError("Failed. ❌\n", false);
             throw;
         }
 
-        ConsoleUtils.WriteSuccess("Done. ✅", false);
+        ConsoleUtils.WriteSuccess("Done. ✅\n", false);
     }
 
     /// <summary>
@@ -306,7 +306,7 @@ public static partial class DotnetOperations
     /// <returns></returns>
     public static async Task AddNugetConfigAsync(string outputDirectory)
     {
-        ConsoleUtils.WriteInfo($"\n📄 Adding 'NuGet.Config' to project root... ", false);
+        ConsoleUtils.WriteInfo($"- 📄 Adding 'NuGet.Config' to project root... ", false);
 
         ProcessStartInfo dotnetNewProcessStartInfo = CreateDotnetProcessStartInfo(
             arguments: [
@@ -320,7 +320,7 @@ public static partial class DotnetOperations
         {
             using Process dotnetNewProcess = Process.Start(dotnetNewProcessStartInfo) ?? throw new Exception("Failed to start 'dotnet new nugetconfig' process.");
 
-            await dotnetNewProcess.WaitForExitAsync();
+            await ConsoleUtils.WriteProgressIndicatorAsync(dotnetNewProcess.WaitForExitAsync(), Console.GetCursorPosition());
 
             if (dotnetNewProcess.ExitCode != 0)
             {
@@ -331,11 +331,11 @@ public static partial class DotnetOperations
         }
         catch (Exception)
         {
-            ConsoleUtils.WriteError("Failed. ❌", false);
+            ConsoleUtils.WriteError("Failed. ❌\n", false);
             throw;
         }
 
-        ConsoleUtils.WriteSuccess("Done. ✅", false);
+        ConsoleUtils.WriteSuccess("Done. ✅\n", false);
     }
 
     /// <summary>
@@ -350,7 +350,7 @@ public static partial class DotnetOperations
         string solutionFilePathRelative = Path.GetRelativePath(Directory.GetCurrentDirectory(), solutionFilePath);
         string projectPathRelative = Path.GetRelativePath(Directory.GetCurrentDirectory(), projectPath);
 
-        ConsoleUtils.WriteInfo($"\n📄 Adding project '{projectPathRelative}' to solution '{solutionFilePathRelative}'... ", false);
+        ConsoleUtils.WriteInfo($"- 📄 Adding project '{projectPathRelative}' to solution '{solutionFilePathRelative}'... ", false);
 
         ProcessStartInfo dotnetNewProcessStartInfo = CreateDotnetProcessStartInfo(
             arguments: [
@@ -366,7 +366,7 @@ public static partial class DotnetOperations
         {
             using Process dotnetNewProcess = Process.Start(dotnetNewProcessStartInfo) ?? throw new Exception("Failed to start 'dotnet sln add' process.");
 
-            await dotnetNewProcess.WaitForExitAsync();
+            await ConsoleUtils.WriteProgressIndicatorAsync(dotnetNewProcess.WaitForExitAsync(), Console.GetCursorPosition());
 
             if (dotnetNewProcess.ExitCode != 0)
             {
@@ -377,10 +377,10 @@ public static partial class DotnetOperations
         }
         catch (Exception)
         {
-            ConsoleUtils.WriteError("Failed. ❌", false);
+            ConsoleUtils.WriteError("Failed. ❌\n", false);
             throw;
         }
 
-        ConsoleUtils.WriteSuccess("Done. ✅", false);
+        ConsoleUtils.WriteSuccess("Done. ✅\n", false);
     }
 }
