@@ -17,7 +17,7 @@ public static partial class DotnetOperations
 
         ConsoleUtils.WriteInfo($"- 📦 Adding .NET tool '{toolName}'... ", false);
 
-        ProcessStartInfo dotnetNewProcessStartInfo = CreateDotnetProcessStartInfo(
+        ProcessStartInfo processStartInfo = CreateDotnetProcessStartInfo(
             arguments: [
                 "tool",
                 "install",
@@ -29,16 +29,7 @@ public static partial class DotnetOperations
 
         try
         {
-            using Process dotnetNewProcess = Process.Start(dotnetNewProcessStartInfo) ?? throw new Exception($"Failed to start 'dotnet tool install {toolName}' process.");
-
-            await ConsoleUtils.WriteProgressIndicatorAsync(dotnetNewProcess.WaitForExitAsync(), Console.GetCursorPosition());
-
-            if (dotnetNewProcess.ExitCode != 0)
-            {
-                string dotnetNewErrorText = await dotnetNewProcess.StandardError.ReadToEndAsync();
-
-                throw new Exception($"Failed to add .NET tool '{toolName}':\n\n{dotnetNewErrorText}");
-            }
+            await ConsoleUtils.WriteProgressIndicatorAsync(RunDotnetProcessAsync(processStartInfo), Console.GetCursorPosition());
         }
         catch (Exception)
         {

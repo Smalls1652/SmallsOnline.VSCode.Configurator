@@ -19,7 +19,7 @@ public static partial class DotnetOperations
 
         ConsoleUtils.WriteInfo($"- 📦 Initializing .NET tool manifest... ", false);
 
-        ProcessStartInfo dotnetNewProcessStartInfo = CreateDotnetProcessStartInfo(
+        ProcessStartInfo processStartInfo = CreateDotnetProcessStartInfo(
             arguments: [
                 "new",
                 "tool-manifest"
@@ -29,16 +29,7 @@ public static partial class DotnetOperations
 
         try
         {
-            using Process dotnetNewProcess = Process.Start(dotnetNewProcessStartInfo) ?? throw new Exception("Failed to start 'dotnet new tool-manifest' process.");
-
-            await ConsoleUtils.WriteProgressIndicatorAsync(dotnetNewProcess.WaitForExitAsync(), Console.GetCursorPosition());
-
-            if (dotnetNewProcess.ExitCode != 0)
-            {
-                string dotnetNewErrorText = await dotnetNewProcess.StandardError.ReadToEndAsync();
-
-                throw new Exception($"Failed to initialize .NET tool manifest:\n\n{dotnetNewErrorText}");
-            }
+            await ConsoleUtils.WriteProgressIndicatorAsync(RunDotnetProcessAsync(processStartInfo), Console.GetCursorPosition());
         }
         catch (Exception)
         {
