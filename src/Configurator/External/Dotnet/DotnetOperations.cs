@@ -37,7 +37,7 @@ public static partial class DotnetOperations
     /// <exception cref="Exception">An error occurred while running the 'dotnet' process.</exception>
     private static async Task RunDotnetProcessAsync(ProcessStartInfo processStartInfo)
     {
-        using Process dotnetProcess = Process.Start(processStartInfo) ?? throw new Exception("Failed to start 'dotnet' process.");
+        using Process dotnetProcess = Process.Start(processStartInfo) ?? throw new DotnetOperationException("Failed to start 'dotnet' process.", processStartInfo);
 
         await dotnetProcess.WaitForExitAsync();
 
@@ -45,7 +45,11 @@ public static partial class DotnetOperations
         {
             string dotnetErrorText = await dotnetProcess.StandardError.ReadToEndAsync();
 
-            throw new Exception(dotnetErrorText);
+            throw new DotnetOperationException(
+                message: $"An error occurred while running 'dotnet {string.Join(' ', processStartInfo.ArgumentList)}'.",
+                processStartInfo: processStartInfo,
+                processErrorText: dotnetErrorText
+            );
         }
     }
 }
