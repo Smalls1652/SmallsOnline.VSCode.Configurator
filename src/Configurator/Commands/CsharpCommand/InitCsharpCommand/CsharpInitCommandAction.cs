@@ -55,6 +55,11 @@ public class CSharpInitCommandAction : AsynchronousCliAction
             await TemplatesOperations.CopyCSharpTasksTemplateAsync(options.OutputDirectory, options.SolutionName);
 
         }
+        catch (DotnetOperationException ex)
+        {
+            ConsoleUtils.WriteError($"\n❌ {ex.Message}\n\n{ex.ProcessErrorText}");
+            return 1;
+        }
         catch (Exception ex)
         {
             ConsoleUtils.WriteError($"\n❌ {ex.Message}");

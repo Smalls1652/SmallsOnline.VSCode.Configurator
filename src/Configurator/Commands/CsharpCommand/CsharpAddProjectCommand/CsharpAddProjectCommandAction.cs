@@ -31,6 +31,11 @@ public class CSharpAddProjectCommandAction : AsynchronousCliAction
             await DotnetOperations.AddProjectToSolutionAsync(options.SolutionFilePath, options.ProjectPath);
             await VSCodeOperations.AddCsharpProjectToTasksJson(options.SolutionFilePath, options.ProjectPath, options.ProjectFriendlyName, options.IsRunnable, options.IsWatchable);
         }
+        catch (DotnetOperationException ex)
+        {
+            ConsoleUtils.WriteError($"\n❌ {ex.Message}\n\n{ex.ProcessErrorText}");
+            return 1;
+        }
         catch (Exception ex)
         {
             ConsoleUtils.WriteError($"\n❌ {ex.Message}");
