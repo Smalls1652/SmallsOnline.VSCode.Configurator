@@ -14,7 +14,7 @@ public static partial class DotnetOperations
     {
         ConsoleUtils.WriteInfo($"- 📄 Adding '.gitignore' to project root... ", false);
 
-        ProcessStartInfo dotnetNewProcessStartInfo = CreateDotnetProcessStartInfo(
+        ProcessStartInfo processStartInfo = CreateDotnetProcessStartInfo(
             arguments: [
                 "new",
                 "gitignore"
@@ -24,16 +24,7 @@ public static partial class DotnetOperations
 
         try
         {
-            using Process dotnetNewProcess = Process.Start(dotnetNewProcessStartInfo) ?? throw new Exception("Failed to start 'dotnet new gitignore' process.");
-
-            await ConsoleUtils.WriteProgressIndicatorAsync(dotnetNewProcess.WaitForExitAsync(), Console.GetCursorPosition());
-
-            if (dotnetNewProcess.ExitCode != 0)
-            {
-                string dotnetNewErrorText = await dotnetNewProcess.StandardError.ReadToEndAsync();
-
-                throw new Exception($"Failed to add .gitignore:\n\n{dotnetNewErrorText}");
-            }
+            await ConsoleUtils.WriteProgressIndicatorAsync(RunDotnetProcessAsync(processStartInfo), Console.GetCursorPosition());
         }
         catch (Exception)
         {

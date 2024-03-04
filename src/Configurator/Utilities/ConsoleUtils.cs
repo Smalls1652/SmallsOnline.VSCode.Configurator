@@ -172,5 +172,10 @@ public static class ConsoleUtils
 
         Console.SetCursorPosition(consolePos.Left, consolePos.Top);
         Console.CursorVisible = true;
+
+        if (task.IsFaulted)
+        {
+            throw task.Exception.GetBaseException();
+        }
     }
 }
