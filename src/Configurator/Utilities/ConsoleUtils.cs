@@ -178,4 +178,56 @@ public static class ConsoleUtils
             throw task.Exception.GetBaseException();
         }
     }
+
+    /// <summary>
+    /// Prompts the user to overwrite a file.
+    /// </summary>
+    /// <returns>Whether to overwrite the file.</returns>
+    public static bool PromptToOverwriteFile() => PromptToOverwriteFile(false);
+
+    /// <summary>
+    /// Prompts the user to overwrite a file.
+    /// </summary>
+    /// <remarks>
+    /// This method is not intended to be called directly. Use <see cref="PromptToOverwriteFile"/> instead.
+    /// </remarks>
+    /// <param name="invalidInput">Whether the user's input was invalid.</param>
+    /// <returns>Whether to overwrite the file.</returns>
+    private static bool PromptToOverwriteFile(bool invalidInput = false)
+    {
+        var currentCursorPos = Console.GetCursorPosition();
+
+        string promptMessage = invalidInput
+            ? "🔴 Invalid input. ✋ File already exists. Overwrite? (y/n) "
+            : "✋ File already exists. Overwrite? (y/n) ";
+
+        WriteWarning(promptMessage, false);
+        Console.Beep();
+        ConsoleKeyInfo key = Console.ReadKey();
+        
+        if (key.Key != ConsoleKey.Y && key.Key != ConsoleKey.N)
+        {
+            ClearConsoleText(promptMessage.Length + 1, currentCursorPos);
+            return PromptToOverwriteFile(true);
+        }
+
+        ClearConsoleText(promptMessage.Length + 1, currentCursorPos);
+
+        return key.Key == ConsoleKey.Y;
+    }
+
+    /// <summary>
+    /// Clears a specified number of characters from the console.
+    /// </summary>
+    /// <param name="count">The count of characters to clear.</param>
+    /// <param name="previousCursorPosition">The previous position of the console cursor.</param>
+    public static void ClearConsoleText(int count, (int Left, int Top) previousCursorPosition)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            Console.Write("\b \b");
+        }
+
+        Console.SetCursorPosition(previousCursorPosition.Left, previousCursorPosition.Top);
+    }
 }

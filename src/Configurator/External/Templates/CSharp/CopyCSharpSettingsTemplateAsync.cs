@@ -34,6 +34,19 @@ public static partial class TemplatesOperations
 
         ConsoleUtils.WriteInfo($"- 📄 Copying 'settings.json' to '.vscode' directory... ", false);
 
+        if (File.Exists(settingsJsonOutputPath))
+        {
+            if (ConsoleUtils.PromptToOverwriteFile())
+            {
+                File.Delete(settingsJsonOutputPath);
+            }
+            else
+            {
+                ConsoleUtils.WriteWarning("Already exists. 🟠\n", false);
+                return;
+            }
+        }
+
         try
         {
             File.Copy(

@@ -5,7 +5,7 @@ namespace SmallsOnline.VSCode.Configurator.External;
 
 public static partial class DotnetOperations
 {
-        /// <summary>
+    /// <summary>
     /// Add the .NET 'gitignore' template to the project.
     /// </summary>
     /// <param name="outputDirectory">The output directory for the new .gitignore file.</param>
@@ -13,6 +13,19 @@ public static partial class DotnetOperations
     public static async Task AddGitIgnoreAsync(string outputDirectory)
     {
         ConsoleUtils.WriteInfo($"- 📄 Adding '.gitignore' to project root... ", false);
+
+        if (File.Exists(Path.Combine(outputDirectory, ".gitignore")))
+        {
+            if (ConsoleUtils.PromptToOverwriteFile())
+            {
+                File.Delete(Path.Combine(outputDirectory, ".gitignore"));
+            }
+            else
+            {
+                ConsoleUtils.WriteWarning("Already exists. 🟠\n", false);
+                return;
+            }
+        }
 
         ProcessStartInfo processStartInfo = CreateDotnetProcessStartInfo(
             arguments: [
