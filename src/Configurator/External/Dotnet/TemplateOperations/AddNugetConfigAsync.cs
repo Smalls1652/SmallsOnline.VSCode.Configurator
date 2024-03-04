@@ -17,14 +17,14 @@ public static partial class DotnetOperations
         if (File.Exists(Path.Combine(outputDirectory, "NuGet.Config")) || File.Exists(Path.Combine(outputDirectory, "nuget.config")))
         {
             if (ConsoleUtils.PromptToOverwriteFile())
-                {
-                    File.Delete(Path.Combine(outputDirectory, "NuGet.Config"));
-                }
-                else
-                {
-                    ConsoleUtils.WriteWarning("Already exists. 🟠\n", false);
-                    return;
-                }
+            {
+                File.Delete(Path.Combine(outputDirectory, "NuGet.Config"));
+            }
+            else
+            {
+                ConsoleUtils.WriteWarning("Already exists. 🟠\n", false);
+                return;
+            }
         }
 
         ProcessStartInfo processStartInfo = CreateDotnetProcessStartInfo(

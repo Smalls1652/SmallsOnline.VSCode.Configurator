@@ -17,14 +17,14 @@ public static partial class DotnetOperations
         if (File.Exists(Path.Combine(outputDirectory, "Directory.Build.props")))
         {
             if (ConsoleUtils.PromptToOverwriteFile())
-                {
-                    File.Delete(Path.Combine(outputDirectory, "Directory.Build.props"));
-                }
-                else
-                {
-                    ConsoleUtils.WriteWarning("Already exists. 🟠\n", false);
-                    return;
-                }
+            {
+                File.Delete(Path.Combine(outputDirectory, "Directory.Build.props"));
+            }
+            else
+            {
+                ConsoleUtils.WriteWarning("Already exists. 🟠\n", false);
+                return;
+            }
         }
 
         ProcessStartInfo processStartInfo = CreateDotnetProcessStartInfo(
