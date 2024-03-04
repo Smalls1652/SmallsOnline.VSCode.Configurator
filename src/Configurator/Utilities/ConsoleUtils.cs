@@ -178,4 +178,39 @@ public static class ConsoleUtils
             throw task.Exception.GetBaseException();
         }
     }
+
+    public static bool PromptToOverwriteFile() => PromptToOverwriteFile(false);
+
+    private static bool PromptToOverwriteFile(bool invalidInput = false)
+    {
+        var currentCursorPos = Console.GetCursorPosition();
+
+        string promptMessage = invalidInput
+            ? "🔴 Invalid input. ⚠️  File already exists. Overwrite? (y/n) "
+            : "⚠️  File already exists. Overwrite? (y/n) ";
+
+        WriteWarning(promptMessage, false);
+        Console.Beep();
+        ConsoleKeyInfo key = Console.ReadKey();
+        
+        if (key.Key != ConsoleKey.Y && key.Key != ConsoleKey.N)
+        {
+            ClearConsoleText(promptMessage.Length + 1, currentCursorPos);
+            return PromptToOverwriteFile(true);
+        }
+
+        ClearConsoleText(promptMessage.Length + 1, currentCursorPos);
+
+        return key.Key == ConsoleKey.Y;
+    }
+
+    public static void ClearConsoleText(int count, (int Left, int Top) previousCursorPosition)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            Console.Write("\b \b");
+        }
+
+        Console.SetCursorPosition(previousCursorPosition.Left, previousCursorPosition.Top);
+    }
 }

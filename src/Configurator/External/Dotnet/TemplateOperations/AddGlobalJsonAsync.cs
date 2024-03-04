@@ -14,6 +14,19 @@ public static partial class DotnetOperations
     {
         ConsoleUtils.WriteInfo($"- 📄 Adding 'global.json' to project root... ", false);
 
+        if (File.Exists(Path.Combine(outputDirectory, "global.json")))
+        {
+            if (ConsoleUtils.PromptToOverwriteFile())
+            {
+                File.Delete(Path.Combine(outputDirectory, "global.json"));
+            }
+            else
+            {
+                ConsoleUtils.WriteWarning("Already exists. 🟠\n", false);
+                return;
+            }
+        }
+
         ProcessStartInfo processStartInfo = CreateDotnetProcessStartInfo(
             arguments: [
                 "new",

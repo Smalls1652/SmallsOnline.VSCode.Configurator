@@ -14,6 +14,19 @@ public static partial class DotnetOperations
     {
         ConsoleUtils.WriteInfo($"- 📄 Adding 'build.props' to project root... ", false);
 
+        if (File.Exists(Path.Combine(outputDirectory, "Directory.Build.props")))
+        {
+            if (ConsoleUtils.PromptToOverwriteFile())
+                {
+                    File.Delete(Path.Combine(outputDirectory, "Directory.Build.props"));
+                }
+                else
+                {
+                    ConsoleUtils.WriteWarning("Already exists. 🟠\n", false);
+                    return;
+                }
+        }
+
         ProcessStartInfo processStartInfo = CreateDotnetProcessStartInfo(
             arguments: [
                 "new",

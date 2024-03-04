@@ -15,6 +15,19 @@ public static partial class DotnetOperations
     {
         ConsoleUtils.WriteInfo($"- 📦 Initializing .NET solution '{solutionName}.sln'... ", false);
 
+        if (File.Exists(Path.Combine(outputDirectory, $"{solutionName}.sln")))
+        {
+            if (ConsoleUtils.PromptToOverwriteFile())
+            {
+                File.Delete(Path.Combine(outputDirectory, $"{solutionName}.sln"));
+            }
+            else
+            {
+                ConsoleUtils.WriteWarning("Already exists. 🟠\n", false);
+                return;
+            }
+        }
+
         ProcessStartInfo processStartInfo = CreateDotnetProcessStartInfo(
             arguments: [
                 "new",
