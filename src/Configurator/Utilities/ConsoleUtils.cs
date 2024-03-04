@@ -198,8 +198,8 @@ public static class ConsoleUtils
         var currentCursorPos = Console.GetCursorPosition();
 
         string promptMessage = invalidInput
-            ? "🔴 Invalid input. ⚠️  File already exists. Overwrite? (y/n) "
-            : "⚠️  File already exists. Overwrite? (y/n) ";
+            ? "🔴 Invalid input. ✋ File already exists. Overwrite? (y/n) "
+            : "✋ File already exists. Overwrite? (y/n) ";
 
         WriteWarning(promptMessage, false);
         Console.Beep();
