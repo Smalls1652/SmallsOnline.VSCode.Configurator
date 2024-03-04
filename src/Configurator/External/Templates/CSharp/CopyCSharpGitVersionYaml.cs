@@ -28,6 +28,19 @@ public static partial class TemplatesOperations
 
         ConsoleUtils.WriteInfo($"- 📄 Copying 'GitVersion.yml' to project root... ", false);
 
+        if (File.Exists(gitVersionYamlOutputPath))
+        {
+            if (ConsoleUtils.PromptToOverwriteFile())
+            {
+                File.Delete(gitVersionYamlOutputPath);
+            }
+            else
+            {
+                ConsoleUtils.WriteWarning("Already exists. 🟠\n", false);
+                return;
+            }
+        }
+
         try
         {
             File.Copy(
