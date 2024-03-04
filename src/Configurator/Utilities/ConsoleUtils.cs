@@ -179,8 +179,20 @@ public static class ConsoleUtils
         }
     }
 
+    /// <summary>
+    /// Prompts the user to overwrite a file.
+    /// </summary>
+    /// <returns>Whether to overwrite the file.</returns>
     public static bool PromptToOverwriteFile() => PromptToOverwriteFile(false);
 
+    /// <summary>
+    /// Prompts the user to overwrite a file.
+    /// </summary>
+    /// <remarks>
+    /// This method is not intended to be called directly. Use <see cref="PromptToOverwriteFile"/> instead.
+    /// </remarks>
+    /// <param name="invalidInput">Whether the user's input was invalid.</param>
+    /// <returns>Whether to overwrite the file.</returns>
     private static bool PromptToOverwriteFile(bool invalidInput = false)
     {
         var currentCursorPos = Console.GetCursorPosition();
@@ -204,6 +216,11 @@ public static class ConsoleUtils
         return key.Key == ConsoleKey.Y;
     }
 
+    /// <summary>
+    /// Clears a specified number of characters from the console.
+    /// </summary>
+    /// <param name="count">The count of characters to clear.</param>
+    /// <param name="previousCursorPosition">The previous position of the console cursor.</param>
     public static void ClearConsoleText(int count, (int Left, int Top) previousCursorPosition)
     {
         for (int i = 0; i < count; i++)
