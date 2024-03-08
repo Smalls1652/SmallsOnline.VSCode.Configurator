@@ -49,7 +49,7 @@ public static partial class VSCodeOperations
                 throw new InvalidOperationException("The settings property is missing.");
             }
 
-            settingsJsonNode?
+            settingsJsonNode
                 .UpdateSettingsProperty<bool>("dotnet.server.useOmnisharp", lspOption == CsharpLspOption.OmniSharp, CoreJsonContext.Default.Boolean)
                 .UpdateSettingsProperty<string>("dotnet.server.path", lspOption == CsharpLspOption.OmniSharp ? "latest" : "", CoreJsonContext.Default.String);
 
