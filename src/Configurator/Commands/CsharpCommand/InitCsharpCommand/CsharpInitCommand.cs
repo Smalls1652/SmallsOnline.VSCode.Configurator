@@ -49,6 +49,15 @@ public class CSharpInitCommand : CliCommand
             }
         );
 
+        Options.Add(
+            new CliOption<string>("--csharp-lsp")
+            {
+                Description = "The C# language server to use.",
+                Required = false,
+                DefaultValueFactory = (defaultValue) => "OmniSharp"
+            }
+        );
+
         Action = new CSharpInitCommandAction();
     }
 }
