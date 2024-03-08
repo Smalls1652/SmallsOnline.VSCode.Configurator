@@ -35,8 +35,6 @@ public static partial class VSCodeOperations
             settingsObject[propertyName] = propertyNode;
         }
 
-        settingsNode.ReplaceWith(settingsObject);
-
-        return settingsNode;
+        return settingsObject;
     }
 }
