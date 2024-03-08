@@ -1,4 +1,5 @@
 using System.CommandLine;
+using System.CommandLine.Completions;
 
 namespace SmallsOnline.VSCode.Configurator.Commands.CSharp;
 
@@ -49,14 +50,26 @@ public class CSharpInitCommand : CliCommand
             }
         );
 
-        Options.Add(
-            new CliOption<string>("--csharp-lsp")
+        CliOption<string> lspOption = new("--csharp-lsp")
+        {
+            Description = "The C# language server to use.",
+            Required = false,
+            DefaultValueFactory = (defaultValue) => "OmniSharp"
+        };
+
+        lspOption.CompletionSources.Add(
+            (CompletionContext context) =>
             {
-                Description = "The C# language server to use.",
-                Required = false,
-                DefaultValueFactory = (defaultValue) => "OmniSharp"
+                List<CompletionItem> items = [
+                    new("OmniSharp"),
+                    new("CsharpLsp")
+                ];
+
+                return items;
             }
         );
+
+        Options.Add(lspOption);
 
         Action = new CSharpInitCommandAction();
     }
