@@ -52,6 +52,7 @@ public class CSharpInitCommandAction : AsynchronousCliAction
             
             ConsoleUtils.WriteInfo("\n🚀 VSCode configs");
             await TemplatesOperations.CopyCSharpSettingsTemplateAsync(options.OutputDirectory, options.SolutionName);
+            await VSCodeOperations.UpdateCsharpLspAsync(options.OutputDirectory, options.CsharpLsp);
             await TemplatesOperations.CopyCSharpTasksTemplateAsync(options.OutputDirectory, options.SolutionName);
 
         }

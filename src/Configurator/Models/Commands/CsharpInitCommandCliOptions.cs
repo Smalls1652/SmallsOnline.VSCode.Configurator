@@ -1,4 +1,5 @@
 using System.CommandLine;
+using SmallsOnline.VSCode.Configurator.Models.VSCode;
 
 namespace SmallsOnline.VSCode.Configurator.Models.Commands;
 
@@ -17,6 +18,7 @@ public class CSharpInitCommandCliOptions
         SolutionName = ParseSolutionNameArgument(parseResult);
         AddGitVersion = ParseAddGitVersionArgument(parseResult);
         AddNugetConfig = ParseAddNugetConfigArgument(parseResult);
+        CsharpLsp = ParseCsharpLspOption(parseResult);
     }
 
     /// <summary>
@@ -38,6 +40,8 @@ public class CSharpInitCommandCliOptions
     /// Whether to add a NuGet.Config file to the new project.
     /// </summary>
     public bool AddNugetConfig { get; set; }
+
+    public CsharpLspOption CsharpLsp { get; set; }
 
     /// <summary>
     /// Parse the output directory argument from the command line.
@@ -95,5 +99,22 @@ public class CSharpInitCommandCliOptions
     private static bool ParseAddNugetConfigArgument(ParseResult parseResult)
     {
         return parseResult.GetValue<bool>("--add-nuget-config");
+    }
+
+    /// <summary>
+    /// Parse the '--csharp-lsp' argument from the command line.
+    /// </summary>
+    /// <param name="parseResult">The parse result from the command line.</param>
+    /// <returns>The LSP to use for C#.</returns>
+    private static CsharpLspOption ParseCsharpLspOption(ParseResult parseResult)
+    {
+        string? csharpLspOption = parseResult.GetValue<string>("--csharp-lsp");
+
+        return csharpLspOption switch
+        {
+            "OmniSharp" => CsharpLspOption.OmniSharp,
+            "CsharpLsp" => CsharpLspOption.CsharpLsp,
+            _ => CsharpLspOption.OmniSharp
+        };
     }
 }
