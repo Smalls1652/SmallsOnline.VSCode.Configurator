@@ -10,6 +10,15 @@ namespace SmallsOnline.VSCode.Configurator.External;
 
 public static partial class VSCodeOperations
 {
+    /// <summary>
+    /// Updates the C# language server option in the settings.json file.
+    /// </summary>
+    /// <param name="workspacePath">The path to the workspace directory.</param>
+    /// <param name="lspOption">The C# language server option to use.</param>
+    /// <returns></returns>
+    /// <exception cref="DirectoryNotFoundException">The workspace directory does not exist.</exception>
+    /// <exception cref="FileNotFoundException">The settings.json file does not exist.</exception>
+    /// <exception cref="InvalidOperationException"></exception>
     public static async Task UpdateCsharpLspAsync(string workspacePath, CsharpLspOption lspOption)
     {
         string workspacePathFull = Path.GetFullPath(workspacePath);
