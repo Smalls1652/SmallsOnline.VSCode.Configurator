@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="GitVersion.MsBuild" Version="5.12.0" PrivateAssets="all" />
+    <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.24209.3" />
+  </ItemGroup>
+</Project>
