@@ -43,6 +43,11 @@ public class CSharpInitCommandAction : AsynchronousCliAction
                 await DotnetOperations.AddNugetConfigAsync(options.OutputDirectory);
             }
 
+            if (options.EnableCentrallyManagedPackages)
+            {
+                TemplatesOperations.CopyCsharpPackagesPropsTemplate(options.OutputDirectory);
+            }
+
             if (options.AddGitVersion)
             {
                 ConsoleUtils.WriteInfo("\n🚀 GitVersion");
