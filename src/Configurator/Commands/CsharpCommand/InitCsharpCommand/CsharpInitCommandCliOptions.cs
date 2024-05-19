@@ -1,7 +1,7 @@
 using System.CommandLine;
 using SmallsOnline.VSCode.Configurator.Models.VSCode;
 
-namespace SmallsOnline.VSCode.Configurator.Models.Commands;
+namespace SmallsOnline.VSCode.Configurator.Commands.CSharp;
 
 /// <summary>
 /// Options for the 'csharp init' command.
