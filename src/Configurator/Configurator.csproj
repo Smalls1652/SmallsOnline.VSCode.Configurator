@@ -1,6 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+  <!-- Core properties-->
   <PropertyGroup>
+    <RootNamespace>SmallsOnline.VSCode.Configurator</RootNamespace>
+    <AssemblyName>vscode-configurator</AssemblyName>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -9,34 +11,28 @@
     <InvariantGlobalization>true</InvariantGlobalization>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
   </PropertyGroup>
-
+  <!-- Package properties -->
   <PropertyGroup>
-    <RootNamespace>SmallsOnline.VSCode.Configurator</RootNamespace>
-    <AssemblyName>vscode-configurator</AssemblyName>
     <PackageId>SmallsOnline.VSCode.Configurator</PackageId>
-
     <Description>
       A tool for quickly configuring new projects in VSCode.
     </Description>
-
     <Authors>Timothy Small</Authors>
     <Company>Smalls.Online</Company>
     <Copyright>© Smalls.Online</Copyright>
-
     <RepositoryUrl>https://github.com/Smalls1652/SmallsOnline.VSCode.Configurator</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
-
+  <!-- Dependencies -->
+  <ItemGroup>
+    <PackageReference Include="GitVersion.MsBuild" PrivateAssets="all" />
+    <PackageReference Include="System.CommandLine" />
+  </ItemGroup>
+  <!-- Includable files -->
   <ItemGroup>
     <Content Include="./Templates/**/*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <CopyToPublishDirectory>Always</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="GitVersion.MsBuild" PrivateAssets="all" />
-    <PackageReference Include="System.CommandLine" />
-  </ItemGroup>
-
 </Project>
