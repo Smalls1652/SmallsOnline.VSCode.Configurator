@@ -1,7 +1,6 @@
 using System.CommandLine;
 using System.CommandLine.Invocation;
 using SmallsOnline.VSCode.Configurator.External;
-using SmallsOnline.VSCode.Configurator.Models.Commands;
 using SmallsOnline.VSCode.Configurator.Utilities;
 
 namespace SmallsOnline.VSCode.Configurator.Commands.CSharp;
@@ -14,7 +13,7 @@ public class CSharpAddProjectCommandAction : AsynchronousCliAction
     /// <inheritdoc />
     public override async Task<int> InvokeAsync(ParseResult parseResult, CancellationToken cancellationToken = default)
     {
-        CSharpAddProjectCommandCliOptions options;
+        CSharpAddProjectCommandOptions options;
         try
         {
             options = new(parseResult);
