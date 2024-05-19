@@ -6,13 +6,13 @@ namespace SmallsOnline.VSCode.Configurator.Commands.CSharp;
 /// <summary>
 /// Options for the 'csharp init' command.
 /// </summary>
-public class CSharpInitCommandCliOptions
+public class CSharpInitCommandOptions
 {
     /// <summary>
-    /// Create a new instance of <see cref="CSharpInitCommandCliOptions"/>.
+    /// Create a new instance of <see cref="CSharpInitCommandOptions"/>.
     /// </summary>
     /// <param name="parseResult">The parse result from the command line.</param>
-    public CSharpInitCommandCliOptions(ParseResult parseResult)
+    public CSharpInitCommandOptions(ParseResult parseResult)
     {
         OutputDirectory = ParseOutputDirectoryArgument(parseResult);
         SolutionName = ParseSolutionNameArgument(parseResult);
