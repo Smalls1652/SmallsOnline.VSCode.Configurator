@@ -39,6 +39,18 @@ Whether to add GitVersion to the new project.
 
 Whether to add a NuGet.Config file to the new project.
 
+#### `--enable-centrally-managed-packages`
+
+Whether to enable centrally managed packages.
+
+#### `--csharp-lsp`
+
+The C# language server to use.
+
+**Default value**: `OmniSharp`
+
+**Allowed values**: `CsharpLsp`, `OmniSharp`
+
 #### `-?`, `-h`, `--help`
 
 Show help and usage information
