@@ -18,6 +18,7 @@ public class CSharpInitCommandCliOptions
         SolutionName = ParseSolutionNameArgument(parseResult);
         AddGitVersion = ParseAddGitVersionArgument(parseResult);
         AddNugetConfig = ParseAddNugetConfigArgument(parseResult);
+        EnableCentrallyManagedPackages = ParseEnableCentrallyManagedPackagesArgument(parseResult);
         CsharpLsp = ParseCsharpLspOption(parseResult);
     }
 
@@ -41,6 +42,14 @@ public class CSharpInitCommandCliOptions
     /// </summary>
     public bool AddNugetConfig { get; set; }
 
+    /// <summary>
+    /// Whether to enable centrally managed packages.
+    /// </summary>
+    public bool EnableCentrallyManagedPackages { get; set; }
+
+    /// <summary>
+    /// The LSP to use for C#.
+    /// </summary>
     public CsharpLspOption CsharpLsp { get; set; }
 
     /// <summary>
@@ -99,6 +108,16 @@ public class CSharpInitCommandCliOptions
     private static bool ParseAddNugetConfigArgument(ParseResult parseResult)
     {
         return parseResult.GetValue<bool>("--add-nuget-config");
+    }
+
+    /// <summary>
+    /// Parse the '--enable-centrally-managed-packages' argument from the command line.
+    /// </summary>
+    /// <param name="parseResult">The parse result from the command line.</param>
+    /// <returns>Whether to enable centrally managed packages.</returns>
+    private static bool ParseEnableCentrallyManagedPackagesArgument(ParseResult parseResult)
+    {
+        return parseResult.GetValue<bool>("--enable-centrally-managed-packages");
     }
 
     /// <summary>
