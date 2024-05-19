@@ -50,6 +50,15 @@ public class CSharpInitCommand : CliCommand
             }
         );
 
+        Options.Add(
+            new CliOption<bool>("--enable-centrally-managed-packages")
+            {
+                Description = "Whether to enable centrally managed packages.",
+                Required = false,
+                DefaultValueFactory = (defaultValue) => false
+            }
+        );
+
         CliOption<string> lspOption = new("--csharp-lsp")
         {
             Description = "The C# language server to use.",
