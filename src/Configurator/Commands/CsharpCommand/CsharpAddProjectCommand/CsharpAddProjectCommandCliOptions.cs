@@ -1,6 +1,6 @@
 using System.CommandLine;
 
-namespace SmallsOnline.VSCode.Configurator.Models.Commands;
+namespace SmallsOnline.VSCode.Configurator.Commands.CSharp;
 
 /// <summary>
 /// Options for the 'csharp add-project' command.
