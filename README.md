@@ -1,5 +1,8 @@
 # VSCode Configurator
 
+> [!WARNING]
+> This has been rewritten in Rust and this repository is now archived. You can find the new repository at [@Smalls1652/vscodeconfigurator-rs](https://github.com/Smalls1652/vscodeconfigurator-rs).
+
 This is a CLI tool to quickly bootstrap a new project for VSCode. More specifically, it's to reduce the amount of common tasks I perform.
 
 > ⚠️ **Note:**
